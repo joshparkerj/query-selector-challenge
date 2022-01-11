@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>THIS IS THE TITLE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bitter&family=Mukta&family=Rock+Salt&family=Zen+Kaku+Gothic+Antique&family=Zen+Old+Mincho&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <script src="./query-selector-tests.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>THIS IS THE HEADER</h1>
+  </header>
+  <main>THIS IS THE MAIN</main>
+  <div>
+    <div>
+      <div>
+        <div>
+          <div class="depth">this is the deep div early in the document</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div><a>this a is in the div</a>
+    <p><a>this a is in the p in the div</a></p>
+  </div>
+  <p><span class="a">apple</span><span class="b">banana</span><span class="c">carrot</span></p>
+  <p><span class="d">d span</span><strong class="d">d mighty</strong><em class="d">d em</em></p>
+  <p class="good"><span class="good">GOODGOOD</span></p>
+  <p class="good"><span class="bad">GOODBAD</span></p>
+  <p class="bad"><span class="good">BADGOOD</span></p>
+  <p class="bad"><span class="bad">BADBAD</span></p>
+  <p id="bad"><span class="bad">id BADBAD</span><a href="google.com">a with an href</a></p>
+  <div class="cool-class">THIS IS THE COOL CLASS</div>
+  <ol>
+    <li>one</li>
+    <li>two</li>
+    <li>three</li>
+    <li>four</li>
+    <li>five</li>
+    <li>six</li>
+    <li>seven</li>
+  </ol>
+  <div id="an-id">I have an id.</div>
+  <div id="battleship">
+    <label>Zebras</label>
+    <label class="albuquerque">Albatrosses</label>
+    <label class="bismarck">Beavers</label>
+    <label class="canberra">Cranes</label>
+    <label class="denver">Dolphins</label>
+    <label class="albuquerque bismarck">Alligators and Bison</label>
+    <label class="albuquerque canberra">Antelope and Cats</label>
+    <label class="albuquerque denver">Aardvarks and Deer</label>
+    <label class="bismarck canberra">Bears and Coelocanths</label>
+    <label class="bismarck denver">Buffalo and Dinosaurs</label>
+    <label class="canberra denver">Chihuahuas and Dingos</label>
+    <label class="albuquerque bismarck canberra">Anteaters, Beetles, and Capybarras</label>
+    <label class="albuquerque bismarck denver">Apes, Burros, and Damselflies</label>
+    <label class="albuquerque canberra denver">Abalone, Cheetahs, and Dragonflies</label>
+    <label class="bismarck canberra denver">Basilisks, Crows, and Dogs</label>
+    <label class="albuquerque bismarck canberra denver">Ants, Birds, Cougars, and Dalmatians</label>
+  </div>
+  <label name="one">label name one</label>
+  <label name="two">label name two</label>
+  <label name="three">label name three</label>
+  <label name="four">label name four</label>
+  <label name="five">label name five</label>
+  <div>
+    <p>I am going to report this to the <abbr title="Federal Bureau of Investigation">FBI</abbr>
+      and the <abbr title="Cental Intelligence Agency">CIA</abbr>!</p>
+  </div>
+  <div class="depth">this is the shallow div late in the document</div>
+  <form id="test-form">
+    <fieldset>
+      <legend>name</legend>
+      <label for="first-name">first name</label>
+      <input type="text" id="first-name" name="first-name">
+      <br>
+      <label for="last-name">last name</label>
+      <input type="text" id="last-name" name="last-name">
+      <br>
+    </fieldset>
+    <label for="occupation">occupation</label>
+    <input type="text" id="occupation" name="occupation" list="occupations">
+    <datalist id="occupations">
+      <option value="executive">executive</option>
+      <option value="doctor">doctor</option>
+      <option value="lawyer">lawyer</option>
+      <option value="senator">senator</option>
+      <option value="loser">loser</option>
+    </datalist>
+  </form>
+  <table>
+    <thead>
+      <tr><th id="fish" colspan="2">Fish</th><th id="birds" colspan="2">Birds</th></tr>
+      <tr><th id="freshwater-fish">Freshwater Fish</th><th id="saltwater-fish">Saltwater Fish</th><th id="songbirds">Songbirds</th><th id="birds-of-prey">Birds of Prey</th></tr>
+      <tr></tr>
+    </thead>
+    <tbody>
+      <tr><td rowspan="2" title="injustice">Injustice 2</td><td rowspan="2" title="mk">Mortal Kombat</td></tr>
+      <tr></tr>
+      <tr></tr>
+    </tbody>
+  </table>
+  <footer class="end">
+    <div>
+      <p><span class="end-inline">footer text</span></p>
+    </div>
+  </footer>
+  <script>
+    const tests = testCases.reduce((acc, { assertions }) => acc.concat(assertions), []);
+
+    tests.forEach((test) => {
+      const { query, result } = test;
+      let pass;
+      if (typeof result === 'string') {
+        try {
+          pass = document.querySelector(query).textContent === result;
+        } catch {
+          console.log('unexpected error');
+          pass = false;
+        }
+      } else if (result === null) {
+        pass = document.querySelector(query) === null;
+      } else if (result === undefined) {
+        try {
+          document.querySelector(query);
+          pass = false;
+        } catch {
+          pass = true;
+        }
+      }
+
+      if (pass) {
+        console.log(test);
+      } else {
+        console.error(test);
+      }
+    });
+  </script>
+</body>
+
+</html>
