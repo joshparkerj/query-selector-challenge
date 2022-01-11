@@ -4,7 +4,7 @@ const querySelector = require('./query-selector');
 
 const testCases = require('./tests');
 
-const html = readFileSync('./node-parsing/query-selector-browser.html', 'utf8');
+const html = readFileSync('./query-selector.html', 'utf8');
 
 const doc = parse(html);
 const text = (element) => element.childNodes.find((childNode) => childNode.nodeName === '#text')?.value;
