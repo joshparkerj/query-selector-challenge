@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "./node_modules/.bin/eslint tests.js && ./node_modules/.bin/eslint query-selector.test.js --global \"test, expect\" && ./node_modules/.bin/eslint query-selector.js --rule \"{no-unused-vars: 0}\"",
     "test": "jest"
   },
   "author": "",
